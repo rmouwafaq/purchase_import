@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <record model="ir.ui.view" id="import_invoice_lines_tree">
+        <field name="name">import_invoice_lines.tree</field>
+        <field name="model">import.invoice.lines</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Article" >
+                <field name="itms_id"/>
+                <field name="montant_achat"/>
+                <field name="montant_frais"/>
+            </tree>
+        </field>
+    </record>
+    </data>
+</openerp> 

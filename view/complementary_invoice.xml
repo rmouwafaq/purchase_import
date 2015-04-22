@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <record model="ir.actions.act_window" id="complementary_invoice_list_action">
+            <field name="name">Facture complementaire</field>
+            <field name="res_model">complementary.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record> 
+    <record model="ir.ui.view" id="facture_complementaire_form">
+        <field name="name">facture_complementaire.form</field>
+        <field name="model">complementary.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Facture Complementaire">		
+             <group>
+                <field name="name"/>                           
+                <field name="supplier_invoice"/>                
+                <field name="bursting_type"/>                            
+            </group>
+            <group>                                         
+                <field name="montant_id"/>                            
+            </group>    
+<!--             <notebook> -->
+<!--                     <page string="Article"> -->
+<!--                       <field name="complementary_invoice_lines_ids"/> -->
+<!--                     </page>    -->
+<!--                 </notebook> -->
+            </form>
+        </field>
+</record>
+   <menuitem id="facture_complementaire_menu"  parent="gestion_multi_magasins_menu" sequence="10" action="complementary_invoice_list_action" name="factures complementaires"/>
+    </data>
+</openerp>     

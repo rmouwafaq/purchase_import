@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <menuitem id="main_gestion_multi_magasins_menu" name="Dossier Import"/>
+        <menuitem id="gestion_multi_magasins_menu"  parent="main_gestion_multi_magasins_menu" name="Dossier"/>
+    </data>
+</openerp>

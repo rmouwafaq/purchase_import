@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <record model="ir.actions.act_window" id="dossier_import_list_action">
+            <field name="name">Dossier Import</field>
+            <field name="res_model">dossier.import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+     </record>
+     <record model="ir.ui.view" id="dossier_import_form">
+        <field name="name">Dossier.form</field>
+        <field name="model">dossier.import</field>
+        <field name="arch" type="xml">
+            <form string="Dossier">
+             <group>
+                <field name="name"/>
+                <field name="active"/>                               
+            </group>       
+                <notebook>
+                    <page string="Facture Import">
+                      <field name="import_invoice_lines_ids"/>
+                    </page>  
+<!--                     <page string="Articles"> -->
+<!--                       <field name="dossier_import_line_ids"/> -->
+<!--                     </page>   -->
+                </notebook>
+            </form>
+        </field>
+     </record>
+      <menuitem id="dossier_import_menu" name="Dossier Import" parent="gestion_multi_magasins_menu" sequence="8" action="dossier_import_list_action"/>
+    </data>
+</openerp> 

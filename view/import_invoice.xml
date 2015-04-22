@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <record model="ir.actions.act_window" id="import_invoice_list_action">
+            <field name="name">Facture Import</field>
+            <field name="res_model">import.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+    </record> 
+    <record model="ir.ui.view" id="facture_import_form">
+        <field name="name">facture_import.form</field>
+        <field name="model">import.invoice</field>
+        <field name="arch" type="xml">
+            <form string="Facture Import">		
+             <group>
+                <field name="name"/>                                         
+                <field name="account_id" on_change="state_id_change(account_id)"/>                            
+            </group>   
+            <notebook>
+                    <page string="Factures Complémentaire">
+                      <field name="complementary_invoice_ids"/>
+                    </page> 
+                    <page string="Articles">
+                      <field name="import_invoice_lines_ids"/>
+                    </page>  
+                </notebook>
+            </form>
+        </field>
+     </record>
+    <menuitem id="facture_import_menu" name="factures Import" parent="gestion_multi_magasins_menu" sequence="9" action="import_invoice_list_action"/>
+    </data>
+</openerp> 
