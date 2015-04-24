@@ -7,6 +7,18 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
     </record> 
+    <record model="ir.ui.view" id="complementary_invoice_tree">
+        <field name="name">complementary_invoice_lines.tree</field>
+        <field name="model">complementary.invoice</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Article" >
+                <field name="name"/>
+                <field name="bursting_type"/>
+                <field name="montant_id"/>
+            </tree>
+        </field>
+    </record>
     <record model="ir.ui.view" id="facture_complementaire_form">
         <field name="name">facture_complementaire.form</field>
         <field name="model">complementary.invoice</field>
@@ -14,7 +26,7 @@
             <form string="Facture Complementaire">		
              <group>
                 <field name="name"/>                           
-                <field name="supplier_invoice"/>                
+                <field name="supplier_invoice" on_change="get_montant(supplier_invoice)"/>                
                 <field name="bursting_type"/>                            
             </group>
             <group>                                         

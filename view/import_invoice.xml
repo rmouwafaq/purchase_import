@@ -13,12 +13,13 @@
         <field name="arch" type="xml">
             <form string="Facture Import">		
              <group>
-                <field name="name"/>                                         
-                <field name="account_id" on_change="state_id_change(account_id)"/>                            
+                <field name="name"/> 
+<!--                  on_change="state_id_change(account_id)" -->
+                <field name="account_id"/>                            
             </group>   
             <notebook>
                     <page string="Factures Complémentaire">
-                      <field name="complementary_invoice_ids"/>
+                      <field name="complementary_invoice_ids" widget="many2many"/>
                     </page> 
                     <page string="Articles">
                       <field name="import_invoice_lines_ids"/>
