@@ -1,0 +1,5 @@
+.align_change_css {
+    color: blue;
+    text-align: center;
+
+}

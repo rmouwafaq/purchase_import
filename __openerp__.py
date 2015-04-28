@@ -20,6 +20,7 @@
         "view/dossier_import.xml",
         "wizard/create_facture_view.xml",
     ],
+    "css":['static/src/css/allign.css'],
     "demo": [],
     "test": [],
     "installable": True,

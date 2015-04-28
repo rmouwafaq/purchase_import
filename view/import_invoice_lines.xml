@@ -6,10 +6,12 @@
         <field name="model">import.invoice.lines</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Article" >
+            <tree string="Article">
                 <field name="itms_id"/>
                 <field name="montant_achat"/>
                 <field name="montant_frais"/>
+                <field name="montant_global"/>
+                <field name="prix_article"/>
             </tree>
         </field>
     </record>
