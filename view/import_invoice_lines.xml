@@ -9,6 +9,7 @@
             <tree string="Article">
                 <field name="itms_id"/>
                 <field name="montant_achat"/>
+                <field name="quantity"/>
                 <field name="montant_frais"/>
                 <field name="montant_global"/>
                 <field name="prix_article"/>

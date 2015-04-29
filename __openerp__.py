@@ -18,6 +18,7 @@
         "view/import_invoice.xml",
         "view/import_invoice_lines.xml",
         "view/dossier_import.xml",
+        "view/product_product.xml",
         "wizard/create_facture_view.xml",
     ],
     "css":['static/src/css/allign.css'],

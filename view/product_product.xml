@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+           <record model="ir.actions.act_window" id="fact_com_h_list_action">
+            <field name="name">Articles</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+           </record>
+           <record model="ir.ui.view" id="product_form_view">
+            <field name="name">product_product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+             <xpath expr="//field[@name='lst_price']" position="after">
+               <field name="margin"/>
+        	 </xpath>
+           </field>	   
+           </record> 
+    </data>
+</openerp>

@@ -6,11 +6,13 @@ class import_invoice(osv.osv):
     _name = 'import.invoice' 
     
     _columns = {  
+                
         'name' : fields.char(string="Nom Facture", required=True),           
         'account_id' : fields.many2one('account.invoice', string="Facture Achat", required=True),
         'dossier_import_id' : fields.many2one("dossier.import", string="Dossier Import"),
         'complementary_invoice_ids' : fields.one2many('complementary.invoice','import_invoice_id', string="Facture Complementaire"),
         'import_invoice_lines_ids' : fields.one2many('import.invoice.lines','import_invoice_id', string="Articles"),   
+            
             }
     
     
@@ -26,15 +28,21 @@ class import_invoice(osv.osv):
         brws=self.pool.get('complementary.invoice').browse(cr, uid, complementary_invoice_ids)
         fact_imp_line_obj= self.pool.get('import.invoice.lines')
         inv = self.pool.get('account.invoice').browse(cr, uid, v)
+        prds = self.pool.get('product.product')
         print inv
         factre_improt_line_ids=[]
         val={}
         mt_hors_tax = inv.amount_untaxed
         qty = 0
+        pb_price = 0
         for qt in inv.invoice_line:
             qty += qt.quantity
             
         for line in inv.invoice_line:
+                pr = prds.browse(cr, uid,line.product_id.id)
+                pr.lst_price += pr.margin
+                #pr = prds.browse(cr, uid,line.product_id.id)
+                #pr.lst_price += pr.margin
                 mt_frais =0
                 for rec in brws:
                     ecl = rec.bursting_type
@@ -43,6 +51,7 @@ class import_invoice(osv.osv):
                     else:
                         mt_frais += ((rec.montant_id * line.quantity) / qty)   
                 val['itms_id']=line.product_id.id
+                val['quantity']= line.quantity
                 val['montant_achat']= line.price_subtotal
                 val['montant_frais']= mt_frais
                 val['montant_global']= val['montant_achat'] + val['montant_frais']
@@ -78,6 +87,7 @@ class import_invoice(osv.osv):
                 else:
                         mt_frais += ((rec.montant_id * line.quantity) / qty) 
             val['itms_id']=line.product_id.id
+            val['quantity']= line.quantity
             val['montant_achat']= line.price_subtotal
             val['montant_frais']= mt_frais
             val['montant_global']= val['montant_achat'] + val['montant_frais']

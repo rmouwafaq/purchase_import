@@ -3,4 +3,5 @@ import complementary_invoice_lines
 import import_invoice
 import import_invoice_lines
 import dossier_import
+import product_product
 import wizard
