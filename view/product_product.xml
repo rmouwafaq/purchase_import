@@ -12,7 +12,10 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-             <xpath expr="//field[@name='lst_price']" position="after">
+             <xpath expr="//field[@name='lst_price']" position="replace">
+               <field name="public_price"/>
+        	 </xpath>
+        	 <xpath expr="//field[@name='public_price']" position="after">
                <field name="margin"/>
         	 </xpath>
            </field>	   

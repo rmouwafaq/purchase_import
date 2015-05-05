@@ -29,27 +29,24 @@ class import_invoice(osv.osv):
         fact_imp_line_obj= self.pool.get('import.invoice.lines')
         inv = self.pool.get('account.invoice').browse(cr, uid, v)
         prds = self.pool.get('product.product')
+        print "prds ====",prds
         print inv
         factre_improt_line_ids=[]
         val={}
         mt_hors_tax = inv.amount_untaxed
         qty = 0
-        pb_price = 0
         for qt in inv.invoice_line:
             qty += qt.quantity
             
         for line in inv.invoice_line:
-                pr = prds.browse(cr, uid,line.product_id.id)
-                pr.lst_price += pr.margin
-                #pr = prds.browse(cr, uid,line.product_id.id)
-                #pr.lst_price += pr.margin
                 mt_frais =0
                 for rec in brws:
                     ecl = rec.bursting_type
                     if ecl == "cout":
                         mt_frais += ((rec.montant_id * line.price_subtotal) / mt_hors_tax)
                     else:
-                        mt_frais += ((rec.montant_id * line.quantity) / qty)   
+                        mt_frais += ((rec.montant_id * line.quantity) / qty)  
+                pr = prds.browse(cr, uid,line.product_id.id)   
                 val['itms_id']=line.product_id.id
                 val['quantity']= line.quantity
                 val['montant_achat']= line.price_subtotal
@@ -59,6 +56,14 @@ class import_invoice(osv.osv):
                 id=fact_imp_line_obj.create(cr, uid,val)
                 factre_improt_line_ids.append(id)    
                 vals['import_invoice_lines_ids']=[[6, False, factre_improt_line_ids]]
+                product_vals={}
+                product_vals['basic_price'] = val['prix_article']
+                print  product_vals['basic_price']
+                product_vals['margin'] = 30
+                print product_vals['margin']
+                product_vals['public_price']  = (product_vals['basic_price'] + 30)
+                print product_vals['public_price']
+                prds.write(cr,uid,pr.id,product_vals)
         return super(import_invoice, self).create(cr, uid, vals, context)
     
     
@@ -69,6 +74,7 @@ class import_invoice(osv.osv):
         brws=self.pool.get('complementary.invoice').browse(cr, uid, complementary_invoice_ids)
         fact_imp_line_obj= self.pool.get('import.invoice.lines')
         inv = self.pool.get('import.invoice').browse(cr, uid, ids)['account_id']
+        prds = self.pool.get('product.product')
         factre_improt_line_ids=[]
         val={}
         mt_hors_tax = inv.amount_untaxed
@@ -94,6 +100,12 @@ class import_invoice(osv.osv):
             val['prix_article']=(val['montant_global'] / line.quantity)
             id=fact_imp_line_obj.create(cr, uid,val)
             factre_improt_line_ids.append(id)    
-            vals['import_invoice_lines_ids']=[[6, False, factre_improt_line_ids]]           
+            vals['import_invoice_lines_ids']=[[6, False, factre_improt_line_ids]] 
+            pr = prds.browse(cr, uid,line.product_id.id)
+            product_vals={}
+            product_vals['basic_price'] = val['prix_article']
+            product_vals['margin'] = 30
+            product_vals['public_price']  = (val['prix_article'] + product_vals['margin'])
+            prds.write(cr,uid,pr.id,product_vals)
         return super(import_invoice, self).write(cr, uid, ids, vals, context)
         
