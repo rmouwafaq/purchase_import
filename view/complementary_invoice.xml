@@ -12,7 +12,7 @@
         <field name="model">complementary.invoice</field>
         <field name="type">tree</field>
         <field name="arch" type="xml">
-            <tree string="Article" >
+            <tree string="Article" colors="green:bursting_type=='cout';red:bursting_type=='quantity';" >
                 <field name="name"/>
                 <field name="bursting_type"/>
                 <field name="montant_id"/>

@@ -15,8 +15,4 @@ class product_product(osv.osv):
     
     
     
-    def write(self, cr, uid, ids, vals, context = None):
-        print vals
-        prds = self.pool.get('product.product').browse(cr, uid, ids)
-        vals['public_price'] = prds.basic_price + vals['margin']
-        return super(product_product, self).write(cr, uid, ids, vals, context)
+    

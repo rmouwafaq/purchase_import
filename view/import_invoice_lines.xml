@@ -13,6 +13,8 @@
                 <field name="montant_frais"/>
                 <field name="montant_global"/>
                 <field name="prix_article"/>
+                <field name="margin"/>
+                <field name="sale_price"/>
             </tree>
         </field>
     </record>

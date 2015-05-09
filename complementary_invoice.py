@@ -8,7 +8,7 @@ class complementary_invoice(osv.osv):
     
     _columns = { 
         'name'             : fields.char(string="Nom Facture", required=True),
-        'supplier_invoice' : fields.many2one('account.invoice', string="Facture Origine"),
+        'supplier_invoice' : fields.many2one('account.invoice', string="Facture Origine", required=True),
         'montant_id'       : fields.float(string="Montant"),
         'bursting_type'    : fields.selection(string_tab, string="Type Eclatement", default="cout"),
         'complementary_invoice_lines_ids' : fields.one2many('complementary.invoice.lines','complementary_invoice_id', string="Articles", required=True),
