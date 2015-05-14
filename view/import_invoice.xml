@@ -11,10 +11,10 @@
 			<field name="name">facture_import.form</field>
 			<field name="model">import.invoice</field>
 			<field name="arch" type="xml">
+				<form string="Facture Import">
 				<header>
 					<button name="calcul_prix_vente" string="Prix Vente" type="object" />
 				</header>
-				<form string="Facture Import">
 					<group>
 						<field name="name" />
 						<field name="account_id" />
@@ -29,7 +29,6 @@
 					</notebook>
 				</form>
 			</field>
-
 		</record>
 		<menuitem id="facture_import_menu" name="factures Import"
 			parent="gestion_multi_magasins_menu" sequence="9"
